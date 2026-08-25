@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { 
-  AlertTriangle, Activity, CloudRain, RefreshCw, Wifi, WifiOff, 
+  AlertTriangle, Activity, CloudRain, RefreshCw, 
   Map, Globe, Navigation, FileText, LayoutDashboard, MessageSquarePlus, Box
 } from 'lucide-react'
 import { simulateRainfallEvent } from '../api.js'
@@ -106,15 +106,6 @@ export default function TopBar({
                  style={{ background: '#1a1a1a', border: '1px solid #2a2a2a' }}>
               <Activity size={10} color="#22c55e" />
               <span style={{ fontSize: 10, color: '#a0a0a0' }}>{nodes.length} NODES</span>
-            </div>
-            <div className="flex items-center gap-1.5 px-2 py-1 rounded"
-                 style={{ background: '#1a1a1a', border: '1px solid #2a2a2a' }}>
-              {wsConnected
-                ? <Wifi size={10} color="#22c55e" />
-                : <WifiOff size={10} color="#ef4444" />}
-              <span style={{ fontSize: 10, color: wsConnected ? '#a0a0a0' : '#ef4444' }}>
-                WS {wsConnected ? 'CONNECTED' : 'DISCONNECTED'}
-              </span>
             </div>
           </div>
 
