@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+:root {
+  --bg-root: #0d0d0d;
+  --bg-card: #1a1a1a;
+  --bg-card-hover: #1f1f1f;
+  --border: #2a2a2a;
+  --border-bright: #3a3a3a;
+  --text-primary: #e8e8e8;
+  --text-secondary: #a0a0a0;
+  --text-muted: #6a6a6a;
+  --text-label: #cfcfcf;
+  --accent-red: #ef4444;
+  --accent-orange: #f97316;
+  --accent-yellow: #eab308;
+  --accent-green: #22c55e;
+  --accent-blue: #3b82f6;
+  --accent-violet: #8b5cf6;
+  --accent-magenta: #ec4899;
+  --accent-teal: #14b8a6;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg-root);
+  color: var(--text-primary);
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #3a3a3a; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #555; }
+
+/* Cards */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+/* Section headers */
+.section-header {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-label);
+}
+
+/* Footer timestamp */
+.card-footer-time {
+  font-size: 10px;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+/* Risk band colors */
+.risk-very-high { color: #ef4444; }
+.risk-high      { color: #f97316; }
+.risk-moderate  { color: #eab308; }
+.risk-low       { color: #22c55e; }
+
+.risk-bg-very-high { background: #ef4444; }
+.risk-bg-high      { background: #f97316; }
+.risk-bg-moderate  { background: #eab308; }
+.risk-bg-low       { background: #22c55e; }
+
+/* Leaflet overrides */
+.leaflet-container {
+  background: #c8d6e0;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+.leaflet-control-zoom a {
+  background: #1a1a1a !important;
+  color: #cfcfcf !important;
+  border-color: #2a2a2a !important;
+}
+.leaflet-control-zoom a:hover {
+  background: #252525 !important;
+  color: #fff !important;
+}
+.leaflet-control-attribution {
+  background: rgba(26,26,26,0.85) !important;
+  color: #6a6a6a !important;
+  font-size: 9px !important;
+}
+.leaflet-control-attribution a { color: #888 !important; }
+
+/* Custom marker pulse */
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+.marker-pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  animation: pulse-ring 1.8s ease-out infinite;
+}
+
+/* Animate bars */
+@keyframes bar-grow {
+  from { width: 0; }
+}
+.bar-animate {
+  animation: bar-grow 0.7s ease-out forwards;
+}
+
+/* Donut transitions */
+.donut-segment {
+  transition: stroke-dashoffset 0.8s ease-out;
+}
+
+/* Alert toast */
+@keyframes slide-in {
+  from { transform: translateX(110%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+.alert-toast {
+  animation: slide-in 0.35s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+@keyframes fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; transform: translateY(-8px); }
+}
+.alert-fade-out {
+  animation: fade-out 0.4s ease-in forwards;
+}
+
+/* Tab active underline */
+.tab-active {
+  border-bottom: 2px solid #3b82f6;
+  color: #fff;
+}
+
+/* Sidebar collapse animation */
+.sidebar-collapse {
+  transition: width 0.25s ease, opacity 0.2s ease;
+}

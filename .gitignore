@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.env
+.venv
+venv/
+env/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+
+# Node / Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.env.local
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Cesium build artifacts (large)
+frontend/public/Cesium/
+
+# Model & data - keep CSV but maybe skip large binaries
+# backend/data/model.pkl  # Uncomment to exclude if too large
