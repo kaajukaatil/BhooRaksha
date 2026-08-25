@@ -28,9 +28,9 @@ async function fetchWeatherForNode(lat, lon) {
   return res.json()
 }
 
-export default function WeatherPanel({ nodes, onWeatherUpdate }) {
-  const [weatherData, setWeatherData] = useState({}) // nodeId -> weather obj
-  const [fetchStatus, setFetchStatus] = useState('idle') // 'idle' | 'loading' | 'done' | 'error'
+export default function WeatherPanel({ nodes, onWeatherUpdate, initialWeatherData }) {
+  const [weatherData, setWeatherData] = useState(initialWeatherData || {}) // nodeId -> weather obj
+  const [fetchStatus, setFetchStatus] = useState(initialWeatherData && Object.keys(initialWeatherData).length > 0 ? 'done' : 'idle')
   const [lastUpdated, setLastUpdated] = useState(null)
   const [editingNode, setEditingNode] = useState(null)
   const [manualForm, setManualForm] = useState({ rainfall_intensity_mmhr: '', temperature_c: '', wind_kmh: '', humidity_pct: '' })

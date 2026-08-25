@@ -78,3 +78,37 @@ export function calcInfraAtRisk(nodes) {
     'Power Lines (km)': bands['Very High'] * 12 + bands['High'] * 6 + bands['Moderate'] * 2,
   }
 }
+
+/**
+ * Recompute dynamic risk score for a node using live or manual weather data.
+ * Mirrors the backend Random Forest feature formula (client-side approximation).
+ * Features: rainfall_intensity, soil_moisture (proxied by humidity %), static_susceptibility
+ */
+export function computeRiskFromWeather(node, weather) {
+  if (!weather) return null
+  const { rainfall_mmhr = 0, humidity_pct = null, source } = weather
+
+  const staticFactor = (node.static_susceptibility / 100.0) * 40.0
+
+  // Soil moisture proxy: use live humidity if available, else carry existing value
+  const moistureEstimate = humidity_pct != null
+    ? Math.min(80, 20 + (humidity_pct / 100) * 60)  // scale 0–100% humidity → 20–80% soil moisture
+    : (node.soil_moisture_pct ?? 30)
+  const moistureFactor = ((moistureEstimate - 20) / 60) * 30.0
+
+  // Rainfall factor (0–200mm/hr → 0–30 risk points)
+  const rainfallFactor = Math.min(30, (rainfall_mmhr / 60.0) * 30.0)
+
+  const rawScore = staticFactor + moistureFactor + rainfallFactor
+  const score = Math.min(100, Math.max(0, parseFloat(rawScore.toFixed(1))))
+
+  return {
+    dynamic_risk_score: score,
+    risk_band: getRiskBand(score),
+    rainfall_intensity_mmhr: rainfall_mmhr,
+    soil_moisture_pct: parseFloat(moistureEstimate.toFixed(1)),
+    weather_source: source || 'live',
+    last_updated: new Date().toISOString(),
+  }
+}
+
