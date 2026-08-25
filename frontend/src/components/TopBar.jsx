@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { 
   AlertTriangle, Activity, CloudRain, RefreshCw, 
-  Map, Globe, Navigation, FileText, LayoutDashboard, MessageSquarePlus, Box
+  Map, Globe, Navigation, FileText, LayoutDashboard, MessageSquarePlus, Box, CloudSun
 } from 'lucide-react'
 import { simulateRainfallEvent } from '../api.js'
 import { formatDateTime } from '../utils.js'
@@ -72,6 +72,7 @@ export default function TopBar({
             { id: 'dashboard', label: 'Live Dashboard', icon: LayoutDashboard },
             { id: 'routing', label: 'Safe Routing', icon: Navigation },
             { id: 'citizen', label: 'Citizen Reports', icon: MessageSquarePlus },
+            { id: 'weather', label: 'Live Weather', icon: CloudSun },
             { id: 'overview', label: 'Project Overview', icon: FileText },
           ].map(tab => {
             const Icon = tab.icon

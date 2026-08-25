@@ -1,4 +1,4 @@
-import { useState, useCallback, lazy, Suspense } from 'react'
+import { useState, useCallback } from 'react'
 import { useNodes, useWebSocketAlerts } from './api.js'
 import TopBar from './components/TopBar.jsx'
 import LeftSidebar from './components/LeftSidebar.jsx'
@@ -13,6 +13,7 @@ import AlertToast from './components/AlertToast.jsx'
 import ProjectOverview from './components/ProjectOverview.jsx'
 import SafeRoutingPage from './components/SafeRoutingPage.jsx'
 import CitizenReportPage from './components/CitizenReportPage.jsx'
+import WeatherPanel from './components/WeatherPanel.jsx'
 
 let _alertIdCounter = 0
 
@@ -22,7 +23,8 @@ export default function App() {
   const [alerts, setAlerts] = useState([])
   const [wsConnected, setWsConnected] = useState(false)
   const [viewMode, setViewMode] = useState('2d') // '2d' | '3d'
-  const [activePage, setActivePage] = useState('dashboard') // 'dashboard' | 'routing' | 'citizen' | 'overview'
+  const [activePage, setActivePage] = useState('dashboard') // 'dashboard' | 'routing' | 'citizen' | 'overview' | 'weather'
+  const [weatherOverrides, setWeatherOverrides] = useState({}) // nodeId -> weather obj
 
   // WebSocket alerts
   const handleAlert = useCallback((msg) => {
@@ -54,6 +56,11 @@ export default function App() {
     }
     setSelectedNode(updatedNode)
   }, [refetch])
+
+  // Weather override callback from WeatherPanel
+  const handleWeatherUpdate = useCallback((nodeId, weatherData) => {
+    setWeatherOverrides(prev => ({ ...prev, [nodeId]: weatherData }))
+  }, [])
 
   // View mode switch preserves selectedNode
   const handleViewModeChange = useCallback((mode) => {
@@ -107,6 +114,7 @@ export default function App() {
         onViewModeChange={handleViewModeChange}
         activePage={activePage}
         onNavigate={setActivePage}
+        weatherOverrides={weatherOverrides}
       />
 
       {/* Main Content Area based on active page */}
@@ -126,6 +134,12 @@ export default function App() {
           nodes={nodes}
           onSimulateSuccess={handleSimulateSuccess}
         />
+      ) : activePage === 'weather' ? (
+        <div className="flex flex-1 overflow-hidden" style={{ minHeight: 0, background: '#0d0d0d', padding: 20, gap: 16 }}>
+          <div style={{ flex: 1, minHeight: 0, overflowY: 'auto' }}>
+            <WeatherPanel nodes={nodes} onWeatherUpdate={handleWeatherUpdate} />
+          </div>
+        </div>
       ) : (
         /* DASHBOARD: 3-column layout */
         <div className="flex flex-1 overflow-hidden" style={{ minHeight: 0 }}>
