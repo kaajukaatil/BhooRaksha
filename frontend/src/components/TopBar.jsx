@@ -57,11 +57,11 @@ export default function TopBar({
           </div>
           <div>
             <div className="font-semibold text-sm tracking-wide flex items-center gap-2" style={{ color: '#e8e8e8' }}>
-              <span>LANDWATCH NE INDIA</span>
-              <span className="text-[9px] px-1.5 py-0.2 rounded bg-blue-950 text-blue-300 border border-blue-800">SIH 2024</span>
+              <span className="tracking-wider">BHOORAKSHA</span>
+              <span className="text-[9px] px-1.5 py-0.2 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">SIH 2024</span>
             </div>
-            <div style={{ fontSize: 10, color: '#6a6a6a', letterSpacing: '0.05em' }}>
-              Early Warning &amp; Evacuation Intelligence Platform
+            <div style={{ fontSize: 10, color: '#888888', letterSpacing: '0.05em' }}>
+              AI Landslide Early Warning &amp; Evacuation Intelligence Platform
             </div>
           </div>
         </div>

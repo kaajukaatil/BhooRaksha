@@ -142,7 +142,7 @@ async def lifespan(app: FastAPI):
     history_cache.clear()
 
 # Create FastAPI App with Lifespan
-app = FastAPI(title="Landslide Early Warning System API", lifespan=lifespan)
+app = FastAPI(title="Bhooraksha — Landslide Early Warning System API", lifespan=lifespan)
 
 # Enable CORS for all origins
 app.add_middleware(

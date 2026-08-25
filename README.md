@@ -1,4 +1,4 @@
-# LandWatch NE India — Landslide Early Warning & Evacuation Intelligence Platform
+# Bhooraksha — AI Landslide Early Warning & Evacuation Intelligence Platform
 
 > **Smart India Hackathon (SIH) 2024 — Disaster Management & AI**
 

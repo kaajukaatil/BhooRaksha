@@ -64,7 +64,7 @@ export default function ProjectOverview({ nodes, onNavigateToDashboard, onNaviga
           </div>
 
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3" style={{ color: '#ffffff' }}>
-            LANDWATCH NE INDIA
+            BHOORAKSHA
           </h1>
           <p className="text-base text-gray-300 max-w-3xl leading-relaxed mb-6">
             An end-to-end AI-powered Landslide Early Warning, 3D Digital Elevation Risk Intelligence, and Dynamic Evacuation Green Corridor Routing platform designed specifically for the rugged, high-vulnerability terrain of Northeast India.
@@ -238,7 +238,7 @@ export default function ProjectOverview({ nodes, onNavigateToDashboard, onNaviga
                 </div>
                 <div className="p-3 rounded bg-black/40 border border-gray-800">
                   <div className="text-green-400 font-bold text-sm mb-1">AI-Powered Evacuation</div>
-                  <div className="text-gray-400">LANDWATCH provides pre-failure early warnings up to 6 hours in advance with dynamically calculated alternate green corridors.</div>
+                  <div className="text-gray-400">BHOORAKSHA provides pre-failure early warnings up to 6 hours in advance with dynamically calculated alternate green corridors.</div>
                 </div>
               </div>
             </div>
@@ -363,7 +363,7 @@ export default function ProjectOverview({ nodes, onNavigateToDashboard, onNaviga
                     Dynamic Safe Routing & Evacuation Green Corridors
                   </h3>
                   <p className="text-xs text-gray-400 mt-1">
-                    How LANDWATCH calculates slope hazard clearance, bypasses blocked ghat sections, and guides emergency aid convoys.
+                    How BHOORAKSHA calculates slope hazard clearance, bypasses blocked ghat sections, and guides emergency aid convoys.
                   </p>
                 </div>
                 <button 
