@@ -37,21 +37,26 @@ A full-stack AI-powered platform for real-time landslide risk prediction, 3D ter
 - Python 3.10+
 - Node.js 18+
 
-### Backend
-```bash
-cd backend
-pip install -r requirements.txt
-python -m uvicorn main:app --host 127.0.0.1 --port 8001
-```
-
-### Frontend
+### Quick Start (Frontend + Backend Concurrently)
 ```bash
 cd frontend
-npm install
 npm run dev
 ```
+> Running `npm run dev` inside `frontend/` now starts **both** the FastAPI Backend (`http://127.0.0.1:8001`) and the Vite Frontend (`http://localhost:5173`) simultaneously.
 
-App opens at **http://localhost:5173/**
+### Running Separately (Optional)
+
+**Backend only:**
+```bash
+cd backend
+python -m uvicorn main:app --host 127.0.0.1 --port 8001 --reload
+```
+
+**Frontend only:**
+```bash
+cd frontend
+npm run dev:frontend
+```
 
 ## 🗺️ Covered Highway Corridors (Safe Routing)
 
